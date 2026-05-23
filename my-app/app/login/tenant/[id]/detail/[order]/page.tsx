@@ -8,7 +8,7 @@ export default function TenantPage({ params }: { params: Promise<{ id: string, o
     const { id, order } = use(params);
 
     const [selectedPage, setSelectedPage] = useState(0);
-    const [pressed, setPressed] = useState(false);
+    const [status, setStatus] = useState(0);
     const [listOrders, setListOrders] = useState<ListOrders[]>([]);
 
     type CartItem = {
@@ -54,6 +54,18 @@ export default function TenantPage({ params }: { params: Promise<{ id: string, o
     const handlePrev = () => setSelectedPage((p) => Math.max(0, p - itemsPerPage));
     const handleNext = () => setSelectedPage((p) => p + itemsPerPage);
 
+    const getButtonProps = () => {
+    if (status === 0) {
+      return { text: "KONFIRMASI PESANAN", color: "bg-[#A61C3C] text-white border-[#A61C3C]" };
+    } else if (status === 1) {
+      return { text: "SELESAIKAN PESANAN", color: "bg-[#FACB1A] text-zinc-900 border-zinc-900" };
+    } else {
+      return { text: "PESANAN TELAH SELESAI", color: "bg-[#1B4D3E] text-white border-[#1B4D3E]" };
+    }
+  };
+
+  const btnProps = getButtonProps();
+    
     return (
         <div
         className="bg-[#F4F3ED] font-sans text-zinc-950 overflow-hidden relative"
@@ -111,19 +123,28 @@ export default function TenantPage({ params }: { params: Promise<{ id: string, o
           </button>
         </div>}
         <button 
-        onClick={() => {
-            setPressed(true);
-            current.map((item) => {
-                if (item.id === Number(order)) {
+          onClick={() => {
+            if (status < 2) {
+              const newStatus = status + 1;
+              setStatus(newStatus);
+              
+              // Jika pesanan sudah selesai (status 2), update ke LocalStorage
+              if (newStatus === 2) {
+                current.map((item) => {
+                  if (item.id === Number(order)) {
                     item.order.status = "done";
                     setListOrders(current);
-                }
-            });
-            localStorage.setItem("orders", JSON.stringify(current));
-        }}
-        className={`relative ml-11.25 top-10 border border-[#1B4D3E]  text-white w-62.5  mt-5
-            ${!pressed ? "bg-[#ec8219] hover:bg-[#ec8219]/90 cursor-pointer" : "bg-[#1dcd43] hover:bg[#1dcd43]/90 cursor-not-allowed"}`}>
-            {!pressed ? "Sedang Dibuat" : "Pesanan Selesai"}
+                  }
+                });
+                localStorage.setItem("orders", JSON.stringify(current));
+              }
+            }
+          }}
+          disabled={status === 2}
+          className={`relative mx-auto block top-10 border w-62.5 py-3 mt-5 font-bold cursor-pointer transition-colors
+            ${btnProps.color} ${status === 2 ? "opacity-90 cursor-not-allowed" : "hover:opacity-80"}`}
+        >
+          {btnProps.text}
         </button>
 
     </div>
