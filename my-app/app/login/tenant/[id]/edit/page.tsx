@@ -53,6 +53,21 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
       const localMenus = localStorage.getItem(`menus_tenant_${tenant}`);
       if (localMenus) {
         setMenus(JSON.parse(localMenus));
+      } else {
+        const data = toko.find((current) => current.tenantID === tenant);
+        if (data) {
+          const initialMenus = data.menu.map((item) => ({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            stok: 10,
+            description: "Deskripsi lezat hidangan spesial siap disajikan.",
+            type: item.type,
+            gambar: item.type === "food" ? "🍛" : "🥤"
+          }));
+          setMenus(initialMenus);
+          localStorage.setItem(`menus_tenant_${tenant}`, JSON.stringify(initialMenus));
+        }
       }
     }
   }, [tenant]);
@@ -75,6 +90,16 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
     setIsOpen(true);
   };
 
+  const bukaTambah = () => {
+    setSelectedId(null);
+    setEditNama("");
+    setEditHarga(0);
+    setEditStok(10);
+    setEditDeskripsi("Deskripsi lezat hidangan spesial siap disajikan.");
+    setEditGambar("🍛");
+    setIsOpen(true);
+  };
+
   const gantiFotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -83,14 +108,39 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
   };
 
   const simpanPerubahan = () => {
-    const updatedMenus = menus.map((m) =>
-      m.id === selectedId
-        ? { ...m, name: editNama, price: editHarga, stok: editStok, description: editDeskripsi, gambar: editGambar }
-        : m
-    );
+    let updatedMenus: MenuAdmin[] = [];
+    if (selectedId !== null) {
+      updatedMenus = menus.map((m) =>
+        m.id === selectedId
+          ? { ...m, name: editNama, price: editHarga, stok: editStok, description: editDeskripsi, gambar: editGambar }
+          : m
+      );
+    } else {
+      const newId = menus.length > 0 ? Math.max(...menus.map((m) => m.id)) + 1 : 1;
+      const newItem: MenuAdmin = {
+        id: newId,
+        name: editNama || "Menu Baru",
+        price: editHarga,
+        stok: editStok,
+        description: editDeskripsi,
+        type: editGambar === "🥤" ? "drink" : "food",
+        gambar: editGambar
+      };
+      updatedMenus = [...menus, newItem];
+    }
     setMenus(updatedMenus);
     localStorage.setItem(`menus_tenant_${tenant}`, JSON.stringify(updatedMenus));
     setIsOpen(false);
+  };
+
+  const hapusMenu = (menuId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const updatedMenus = menus.filter((m) => m.id !== menuId);
+    setMenus(updatedMenus);
+    localStorage.setItem(`menus_tenant_${tenant}`, JSON.stringify(updatedMenus));
+    if (displayItems.length === 1 && selectedPage > 0) {
+      setSelectedPage((p) => p - itemsPerPage);
+    }
   };
 
   const simpanNamaTenant = () => {
@@ -109,7 +159,7 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
         <header className="border-b border-zinc-300 px-3 pt-2.5 pb-2 bg-white relative flex items-center justify-between min-h-[46px]">
           <button 
             onClick={() => router.push("/login")} 
-            className="text-sm px-2 py-1 border border-zinc-400 bg-white hover:bg-zinc-100 leading-none cursor-pointer z-10"
+            className="text-xs px-2 py-1 border border-zinc-400 bg-white hover:bg-zinc-100 leading-none cursor-pointer z-10"
           >
             Login
           </button>
@@ -143,15 +193,30 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
             Pesanan Masuk
           </button>
         </header>
+
+        <div className="px-3 pt-2 flex justify-end">
+          <button 
+            onClick={bukaTambah}
+            className="text-[9px] px-2.5 py-1 bg-orange-500 text-white font-black uppercase rounded shadow hover:bg-orange-600 transition cursor-pointer active:scale-95"
+          >
+            + Tambah Menu
+          </button>
+        </div>
         
-        <div className="px-3 pt-3 overflow-hidden mx-auto" style={{ height: 410 }}>
+        <div className="px-3 pt-2 overflow-hidden mx-auto" style={{ height: 410 }}>
           <div className="grid grid-cols-3 gap-x-2 gap-y-2 w-full max-w-[260px] mx-auto">
             {displayItems.map((menu) => (
               <div 
                 key={menu.id} 
                 onClick={() => bukaEdit(menu)}
-                className="flex flex-col items-center cursor-pointer"
+                className="flex flex-col items-center cursor-pointer relative group"
               >
+                <button
+                  onClick={(e) => hapusMenu(menu.id, e)}
+                  className="absolute -top-1 -right-1 bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black z-20 shadow hover:bg-red-600 transition active:scale-90"
+                >
+                  ×
+                </button>
                 <div 
                   className={`w-full ${menu.type === "food" ? "bg-[#D2EE9D]" : "bg-[#FACB1A]"} border border-zinc-300 flex items-center justify-center overflow-hidden relative shadow-sm hover:scale-105 transition-transform`}
                   style={{ aspectRatio: "1 / 1" }}
@@ -159,7 +224,7 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
                   {menu.gambar.startsWith("blob:") ? (
                     <Image src={menu.gambar} alt={menu.name} fill className="object-cover" unoptimized />
                   ) : (
-                    <span className="text-2xl">{menu.gambar}</span>
+                    <span className="text-xl">{menu.gambar}</span>
                   )}
                 </div>
                 <div className="mt-0.5 text-center w-full px-0.5">
@@ -196,10 +261,16 @@ export default function EditMenuPage({ params }: { params: Promise<{ id: string 
         {isOpen && (
           <div onClick={() => setIsOpen(false)} className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
             <div onClick={(e) => e.stopPropagation()} className="w-full max-w-[280px] bg-white border-4 border-orange-500 rounded-3xl p-4 shadow-2xl flex flex-col gap-2 max-h-[85vh] overflow-y-auto">
-              <h2 className="text-xs font-black text-orange-500 text-center uppercase">Edit Menu</h2>
+              <h2 className="text-xs font-black text-orange-500 text-center uppercase">
+                {selectedId !== null ? "Edit Menu" : "Tambah Menu"}
+              </h2>
               <div className="flex flex-col items-center gap-1 w-full">
                 <div className="w-full bg-zinc-50 border flex items-center justify-center text-3xl h-16 relative rounded-xl overflow-hidden">{editGambar.startsWith("blob:") ? <Image src={editGambar} alt="Preview" fill className="object-cover" unoptimized /> : <span>{editGambar}</span>}</div>
-                <label className="cursor-pointer bg-zinc-100 border text-[9px] font-bold px-2 py-1 rounded-md uppercase">Pilih Foto Baru<input type="file" accept="image/*" onChange={gantiFotoHandler} className="hidden" /></label>
+                <div className="flex gap-2 mt-1">
+                  <button onClick={() => setEditGambar("🍛")} className={`p-1 border text-xs ${editGambar === "🍛" ? "bg-orange-500 text-white" : "bg-white"}`}>🍛</button>
+                  <button onClick={() => setEditGambar("🥤")} className={`p-1 border text-xs ${editGambar === "🥤" ? "bg-orange-500 text-white" : "bg-white"}`}>🥤</button>
+                  <label className="cursor-pointer bg-zinc-100 border text-[9px] font-bold px-2 py-1 rounded-md uppercase">Foto<input type="file" accept="image/*" onChange={gantiFotoHandler} className="hidden" /></label>
+                </div>
               </div>
               <input type="text" value={editNama} onChange={(e) => setEditNama(e.target.value)} className="w-full h-8 border rounded-xl px-2.5 text-xs text-orange-500 font-bold" placeholder="Nama Menu" />
               <input type="number" value={editHarga} onChange={(e) => setEditHarga(Number(e.target.value))} className="w-full h-8 border rounded-xl px-2.5 text-xs text-orange-500 font-bold" placeholder="Harga Menu" />
