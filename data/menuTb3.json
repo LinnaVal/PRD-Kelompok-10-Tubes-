@@ -1,0 +1,1208 @@
+{
+    "toko": [
+        {
+            "name": "Kantin Warga",
+            "tenantID": 1,
+            "username": "kantinwarga",
+            "password": "kantinwarga123",
+            "menu": [
+                {
+                    "id": 1,
+                    "type": "food",
+                    "name": "Cireng Bumbu Rujak",
+                    "price": 17000
+                }, 
+                {
+                    "id": 2,
+                    "type": "food",
+                    "name": "Batagor Kering",
+                    "price": 17000
+                },
+                {
+                    "id": 3,
+                    "type": "food",
+                    "name": "Batagor Kuah",
+                    "price": 17000
+                },
+                {
+                    "id": 4,
+                    "type": "food",
+                    "name": "French Fries Original",
+                    "price": 12000
+                },
+                {
+                    "id": 5,
+                    "type": "food",
+                    "name": "French Fries Bolognaise Sauce",
+                    "price": 20000
+                },
+                {
+                    "id": 6,
+                    "type": "food",
+                    "name": "French Fries Cheese Sauce",
+                    "price": 20000
+                },
+                {
+                    "id": 7,
+                    "type": "food",
+                    "name": "French Fries Chicken Katsu",
+                    "price": 28000
+                },
+                {
+                    "id": 8,
+                    "type": "food",
+                    "name": "Curry Samosa",
+                    "price": 20000
+                },
+                {
+                    "id": 9,
+                    "type": "food",
+                    "name": "Risol",
+                    "price": 6000
+                },
+                {
+                    "id": 10,
+                    "type": "food",
+                    "name": "Nasi Goreng Warga",
+                    "price": 6000
+                },
+                {
+                    "id": 11,
+                    "type": "food",
+                    "name": "Nasi Goreng Hejo",
+                    "price": 20000
+                },
+                {
+                    "id": 12,
+                    "type": "food",
+                    "name": "Nasi Goreng Minang",
+                    "price": 17000
+                },
+                {
+                    "id": 13,
+                    "type": "food",
+                    "name": "Nasi Goreng Mawut",
+                    "price": 20000
+                },
+                {
+                    "id": 14,
+                    "type": "food",
+                    "name": "Ricebowl Ayam Matah",
+                    "price": 22000
+                },
+                {
+                    "id": 15,
+                    "type": "food",
+                    "name": "Ricebowl Ayam Donburi",
+                    "price": 22000
+                },
+                {
+                    "id": 16,
+                    "type": "food",
+                    "name": "Ricebowl Ayam Asam Manis",
+                    "price": 22000
+                },
+                {
+                    "id": 17,
+                    "type": "food",
+                    "name": "Ricebowl Ayam Rica-Rica",
+                    "price": 22000
+                },
+                {
+                    "id": 18,
+                    "type": "food",
+                    "name": "Mie Goreng Ayam Cincang",
+                    "price": 20000
+                },
+                {
+                    "id": 19,
+                    "type": "food",
+                    "name": "Mie Goreng Ayam Katsu",
+                    "price": 28000
+                },
+                {
+                    "id": 20,
+                    "type": "food",
+                    "name": "Mie Goreng Ayam Geprek",
+                    "price": 28000
+                },
+                {
+                    "id": 21,
+                    "type": "food",
+                    "name": "Mie Godog",
+                    "price": 20000
+                },
+                {
+                    "id": 22,
+                    "type": "food",
+                    "name": "Nasi Soto Ayam",
+                    "price": 20000
+                },
+                {
+                    "id": 23,
+                    "type": "food",
+                    "name": "Nasi Bakar Ayam Kemangi",
+                    "price": 20000
+                },
+                {
+                    "id": 24,
+                    "type": "food",
+                    "name": "Nasi Ayam Geprek",
+                    "price": 20000
+                },
+                {
+                    "id": 25,
+                    "type": "food",
+                    "name": "Donat",
+                    "price": 4000
+                },
+                {
+                    "id": 26,
+                    "type": "food",
+                    "name": "Churros (5 pcs)",
+                    "price": 20000
+                },
+                {
+                    "id": 27,
+                    "type": "food",
+                    "name": "Cookies",
+                    "price": 22000
+                },
+                {
+                    "id": 28,
+                    "type": "food",
+                    "name": "Telur",
+                    "price": 6000
+                },
+                {
+                    "id": 29,
+                    "type": "food",
+                    "name": "Chicken Katsu",
+                    "price": 13000
+                },
+                {
+                    "id": 29,
+                    "type": "food",
+                    "name": "Chicken Crispy",
+                    "price": 13000
+                },
+                {
+                    "id": 30,
+                    "type": "food",
+                    "name": "Sambal",
+                    "price": 3000
+                },
+                {
+                    "id": 31,
+                    "type": "drink",
+                    "name": "Matcha Latte",
+                    "price": 17000
+                },
+                {
+                    "id": 32,
+                    "type": "drink",
+                    "name": "Classic Mojito",
+                    "price": 17000
+                },
+                {
+                    "id": 33,
+                    "type": "drink",
+                    "name": "Thai Tea",
+                    "price": 17000
+                },
+                {
+                    "id": 34,
+                    "type": "drink",
+                    "name": "Milkshake Vanilla",
+                    "price": 20000
+                },
+                {
+                    "id": 35,
+                    "type": "drink",
+                    "name": "Milkshake Strawberry",
+                    "price": 20000
+                },
+                {
+                    "id": 36,
+                    "type": "drink",
+                    "name": "Ice Matcha Berry",
+                    "price": 22000
+                },
+                {
+                    "id": 37,
+                    "type": "drink",
+                    "name": "Ice Choco Berry",
+                    "price": 22000
+                },
+                {
+                    "id": 38,
+                    "type": "drink",
+                    "name": "Ice Choco Latte",
+                    "price": 17000
+                },
+                {
+                    "id": 39,
+                    "type": "drink",
+                    "name": "Black Coffee",
+                    "price": 17000
+                },
+                {
+                    "id": 40,
+                    "type": "drink",
+                    "name": "Iced Latte",
+                    "price": 20000
+                },
+                {
+                    "id": 41,
+                    "type": "drink",
+                    "name": "Es Kopi Woles",
+                    "price": 20000
+                },
+                {
+                    "id": 42,
+                    "type": "drink",
+                    "name": "Es Kopi Cenghar",
+                    "price": 22000
+                },
+                {
+                    "id": 43,
+                    "type": "drink",
+                    "name": "Iced Vanilla Latte",
+                    "price": 22000
+                },
+                {
+                    "id": 44,
+                    "type": "drink",
+                    "name": "Iced Caramel Latte",
+                    "price": 22000
+                },
+                {
+                    "id": 45,
+                    "type": "drink",
+                    "name": "Iced Hazelnut Latter",
+                    "price": 22000
+                },
+                {
+                    "id": 46,
+                    "type": "drink",
+                    "name": "Iced Coffee Lemonade",
+                    "price": 24000
+                },
+                {
+                    "id": 48,
+                    "type": "drink",
+                    "name": "Espresso Shoot",
+                    "price": 7000
+                },
+                {
+                    "id": 50,
+                    "type": "drink",
+                    "name": "Flavored Syrups",
+                    "price": 7000
+                },
+                {
+                    "id": 51,
+                    "type": "drink",
+                    "name": "Basic Tea",
+                    "price": 3000
+                },
+                {
+                    "id": 52,
+                    "type": "drink",
+                    "name": "Sweet Tea",
+                    "price": 6000
+                },
+                {
+                    "id": 53,
+                    "type": "drink",
+                    "name": "Lemon Tea",
+                    "price": 12000
+                },
+                {
+                    "id": 54,
+                    "type": "drink",
+                    "name": "Teh Tarik",
+                    "price": 17000
+                },
+                {
+                    "id": 55,
+                    "type": "drink",
+                    "name": "Peach Tea",
+                    "price": 20000
+                },
+                {
+                    "id": 56,
+                    "type": "drink",
+                    "name": "Lychee Tea",
+                    "price": 20000
+                },
+                {
+                    "id": 57,
+                    "type": "drink",
+                    "name": "Mix Berries Juice",
+                    "price": 20000
+                },
+                {
+                    "id": 58,
+                    "type": "drink",
+                    "name": "Strawberry Juice",
+                    "price": 20000
+                },
+                {
+                    "id": 59,
+                    "type": "drink",
+                    "name": "Creamy Mango Juice",
+                    "price": 20000
+                },
+                {
+                    "id": 60,
+                    "type": "drink",
+                    "name": "Orange Juice",
+                    "price": 16000
+                }
+            ]
+        },
+        {
+            "name": "Cager",
+            "tenantID": 2,
+            "username": "cager",
+            "password": "cager123",
+            "menu": [
+                {
+                    "id": 1,
+                    "type": "food",
+                    "name": "Nasi Ayam Cager Creamy Moza",
+                    "price": 23000
+                },
+                {
+                    "id": 2,
+                    "type": "food",
+                    "name": "Nasi Ayam Cager Saus Mentai",
+                    "price": 23000
+                },
+                {
+                    "id": 3,
+                    "type": "food",
+                    "name": "Nasi Cumi Cager Sambel Hejo",
+                    "price": 23000
+                },
+                {
+                    "id": 4,
+                    "type": "food",
+                    "name": "Nasi Cumi Cager Sambel Mercon",
+                    "price": 23000
+                },
+                {
+                    "id": 5,
+                    "type": "food",
+                    "name": "Nasi Ayam Sambel Hejo",
+                    "price": 25000
+                },
+                {
+                    "id": 6,
+                    "type": "food",
+                    "name": "Chicken Steak",
+                    "price": 30000
+                },
+                {
+                    "id": 7,
+                    "type": "food",
+                    "name": "Meltique 100gr",
+                    "price": 40000
+                },
+                {
+                    "id": 8,
+                    "type": "food",
+                    "name": "Sate Maranggi Campur Medium",
+                    "price": 27000
+                },
+                {
+                    "id": 9,
+                    "type": "food",
+                    "name": "Sate Maranggi Campur Large",
+                    "price": 32000
+                },
+                {
+                    "id": 10,
+                    "type": "food",
+                    "name": "Bubur Ayam Original",
+                    "price": 13000
+                },
+                {
+                    "id": 11,
+                    "type": "food",
+                    "name": "Bubur Ayam Pangsit",
+                    "price": 15000
+                },
+                {
+                    "id": 12,
+                    "type": "food",
+                    "name": "Mie Baso",
+                    "price": 18000
+                },
+                {
+                    "id": 13,
+                    "type": "food",
+                    "name": "Wonton Chili Oil",
+                    "price": 19000
+                },
+                {
+                    "id": 14,
+                    "type": "food",
+                    "name": "Seblak Suki",
+                    "price": 19000
+                },
+                {
+                    "id": 15,
+                    "type": "food",
+                    "name": "Telur",
+                    "price": 4000
+                },
+                {
+                    "id": 16,
+                    "type": "food",
+                    "name": "Sosis",
+                    "price": 4000
+                },
+                {
+                    "id": 17,
+                    "type": "food",
+                    "name": "Macaroni",
+                    "price": 18000
+                },
+                {
+                    "id": 18,
+                    "type": "food",
+                    "name": "Butter Rice",
+                    "price": 6000
+                },
+                {
+                    "id": 19,
+                    "type": "food",
+                    "name": "Nasi (Untuk Sate Maranggi)",
+                    "price": 3000
+                },
+                {
+                    "id": 20,
+                    "type": "drink",
+                    "name": "Smoothie Strawberry",
+                    "price": 12000
+                },
+                {
+                    "id": 21,
+                    "type": "drink",
+                    "name": "Smoothie Mix Berry",
+                    "price": 12000
+                },
+                {
+                    "id": 22,
+                    "type": "drink",
+                    "name": "Smoothie Mangga",
+                    "price": 12000
+                },
+                {
+                    "id": 23,
+                    "type": "drink",
+                    "name": "Es Cappucino Cincau",
+                    "price": 10000
+                },
+                {
+                    "id": 24,
+                    "type": "drink",
+                    "name": "Es Coklat",
+                    "price": 10000
+                },
+                {
+                    "id": 25,
+                    "type": "drink",
+                    "name": "Es Matcha Latte",
+                    "price": 10000
+                }
+            ]
+        },
+        {
+            "name": "Kedai Agronic",
+            "tenantID": 3,
+            "username": "kedaiagronic",
+            "password": "kedaiagronic123",
+            "menu": [
+                {
+                    "id": 1,
+                    "type": "food",
+                    "name": "Nasi Kuning Telur Balado",
+                    "price": 13000
+                },
+                {
+                    "id": 2,
+                    "type": "food",
+                    "name": "Nasi Uduk Telor Balado",
+                    "price": 13000
+                },
+                {
+                    "id": 3,
+                    "type": "food",
+                    "name": "Nasi Tutug Oncom Telor Dadar Paket Komplit",
+                    "price": 13000
+                },
+                {
+                    "id": 4,
+                    "type": "food",
+                    "name": "Nasi Tutug Oncom Ayam Paket Komplit",
+                    "price": 22000
+                },
+                {
+                    "id": 5,
+                    "type": "food",
+                    "name": "Nasi Ayam Serundeng",
+                    "price": 20000
+                },
+                {
+                    "id": 6,
+                    "type": "food",
+                    "name": "Nasi Ayam c'Madu Paket Komplit",
+                    "price": 20000
+                },
+                {
+                    "id": 7,
+                    "type": "food",
+                    "name": "Nasi Ayam Kremes Paket Komplit",
+                    "price": 20000
+                },
+                {
+                    "id": 8,
+                    "type": "food",
+                    "name": "Nasi Ayam Garlic Paket Komplit",
+                    "price": 20000
+                },
+                {
+                    "id": 9,
+                    "type": "food",
+                    "name": "Nasi Ayam Ketumbar Paket Komplit",
+                    "price": 20000
+                },
+                {
+                    "id": 10,
+                    "type": "food",
+                    "name": "Nasi Ayam Sereh Paket Komplit",
+                    "price": 10000
+                },
+                {
+                    "id": 11,
+                    "type": "food",
+                    "name": "Nasi Chicken Popcorn",
+                    "price": 17000
+                },
+                {
+                    "id": 12,
+                    "type": "food",
+                    "name": "Nasi Kulit Ayam Crispy",
+                    "price": 22000
+                },
+                {
+                    "id": 13,
+                    "type": "food",
+                    "name": "Nasi Korea",
+                    "price": 22000
+                },
+                {
+                    "id": 14,
+                    "type": "food",
+                    "name": "Chicken Crispy Steak",
+                    "price": 17000
+                },
+                {
+                    "id": 15,
+                    "type": "food",
+                    "name": "Chicken Steak Saus Mushroom",
+                    "price": 23000
+                },
+                {
+                    "id": 16,
+                    "type": "food",
+                    "name": "Chicken Cordon Blue",
+                    "price": 25000
+                },
+                {
+                    "id": 17,
+                    "type": "food",
+                    "name": "Nasi Sate Taican",
+                    "price": 19000
+                },
+                {
+                    "id": 18,
+                    "type": "food",
+                    "name": "Nasi Sate Bumbu Kacang",
+                    "price": 19000
+                },
+                {
+                    "id": 19,
+                    "type": "food",
+                    "name": "Mie Goreng Katsu",
+                    "price": 16000
+                },
+                {
+                    "id": 20,
+                    "type": "food",
+                    "name": "Mie Nyemek Special",
+                    "price": 16000
+                },
+                {
+                    "id": 21,
+                    "type": "food",
+                    "name": "Mie Nyemek Sea Food",
+                    "price": 22000
+                },
+                {
+                    "id": 22,
+                    "type": "food",
+                    "name": "Mie Nyemek Premium",
+                    "price": 25000
+                },
+                {
+                    "id": 23,
+                    "type": "food",
+                    "name": "Kwetiaw Special",
+                    "price": 16000
+                },
+                {
+                    "id": 24,
+                    "type": "food",
+                    "name": "Kwetiaw Sea Food",
+                    "price": 22000
+                },
+                {
+                    "id": 25,
+                    "type": "food",
+                    "name": "Nasi Soto Ayam Lamongan",
+                    "price": 16000
+                },
+                {
+                    "id": 26,
+                    "type": "food",
+                    "name": "Nasi Soto Bandung",
+                    "price": 22000
+                },
+                {
+                    "id": 27,
+                    "type": "food",
+                    "name": "Aneka Gorengan",
+                    "price": 2000
+                },
+                {
+                    "id": 28,
+                    "type": "food",
+                    "name": "Cilok (bumbu kacang/kuah)",
+                    "price": 13000
+                },
+                {
+                    "id": 29,
+                    "type": "food",
+                    "name": "Pempek (isi 3)",
+                    "price": 14000
+                },
+                {
+                    "id": 30,
+                    "type": "food",
+                    "name": "Cirawang Pentol",
+                    "price": 15000
+                },
+                {
+                    "id": 31,
+                    "type": "food",
+                    "name": "Baso Tahu Bandung (isi 4)",
+                    "price": 17000
+                },
+                {
+                    "id": 32,
+                    "type": "food",
+                    "name": "Basreng Daun Jeruk",
+                    "price": 10000
+                },
+                {
+                    "id": 33,
+                    "type": "food",
+                    "name": "French Fries",
+                    "price": 12000
+                },
+                {
+                    "id": 34,
+                    "type": "food",
+                    "name": "Pisang Selimut",
+                    "price": 10000
+                },
+                {
+                    "id": 35,
+                    "type": "drink",
+                    "name": "Es Teler Creamy",
+                    "price": 13000
+                },
+                {
+                    "id": 36,
+                    "type": "drink",
+                    "name": "Es Kelapa Muda",
+                    "price": 9000
+                },
+                {
+                    "id": 37,
+                    "type": "drink",
+                    "name": "Juice Melon",
+                    "price": 11000
+                },
+                {
+                    "id": 38,
+                    "type": "drink",
+                    "name": "Juice Strawberry",
+                    "price": 11000
+                },
+                {
+                    "id": 39,
+                    "type": "drink",
+                    "name": "Chocolate (Hot/Ice)",
+                    "price": 10000
+                },
+                {
+                    "id": 40,
+                    "type": "drink",
+                    "name": "Green Tea (Hot/Ice)",
+                    "price": 10000
+                },
+                {
+                    "id": 41,
+                    "type": "drink",
+                    "name": "Salad Pisang Saus Coklat",
+                    "price": 12000
+                },
+                {
+                    "id": 42,
+                    "type": "drink",
+                    "name": "Es Buah",
+                    "price": 11000
+                },
+                {
+                    "id": 43,
+                    "type": "drink",
+                    "name": "Es Kelapa Mangga",
+                    "price": 11000
+                },
+                {
+                    "id": 44,
+                    "type": "drink",
+                    "name": "Juice Pisang Strawberry",
+                    "price": 11000
+                },
+                {
+                    "id": 45,
+                    "type": "drink",
+                    "name": "Juice Pisang Naga",
+                    "price": 11000
+                },
+                {
+                    "id": 46,
+                    "type": "drink",
+                    "name": "Juice Pisang Mangga",
+                    "price": 10000
+                },
+                {
+                    "id": 47,
+                    "type": "drink",
+                    "name": "Jasmine Tea Honey (Hot/Ice)",
+                    "price": 10000
+                },
+                {
+                    "id": 48,
+                    "type": "drink",
+                    "name": "Lemon Tea (Hot/Ice)",
+                    "price": 10000
+                },
+                {
+                    "id": 49,
+                    "type": "drink",
+                    "name": "Lemon Ice/Hot",
+                    "price": 9000
+                },
+                {
+                    "id": 50,
+                    "type": "drink",
+                    "name": "Es Kelapa Jeruk",
+                    "price": 11000
+                },
+                {
+                    "id": 51,
+                    "type": "drink",
+                    "name": "Juice Mangga",
+                    "price": 11000
+                },
+                {
+                    "id": 52,
+                    "type": "drink",
+                    "name": "Es Kelapa Alpukat",
+                    "price": 11000
+                },
+                {
+                    "id": 53,
+                    "type": "drink",
+                    "name": "Juice Pisang",
+                    "price": 11000
+                },
+                {
+                    "id": 54,
+                    "type": "drink",
+                    "name": "Juice Alpukat",
+                    "price": 11000
+                },
+                {
+                    "id": 55,
+                    "type": "drink",
+                    "name": "Yoghurt Mangga",
+                    "price": 12000
+                },
+                {
+                    "id": 56,
+                    "type": "drink",
+                    "name": "Yoghurt Buah Naga",
+                    "price": 12000
+                },
+                {
+                    "id": 57,
+                    "type": "drink",
+                    "name": "Yoghurt Strawberry",
+                    "price": 12000
+                },
+                {
+                    "id": 58,
+                    "type": "drink",
+                    "name": "Yoghurt Mulberry",
+                    "price": 12000
+                },
+                {
+                    "id": 59,
+                    "type": "drink",
+                    "name": "Juice Buah Naga",
+                    "price": 9000
+                },
+                {
+                    "id": 60,
+                    "type": "drink",
+                    "name": "Juice Mulberry",
+                    "price": 11000
+                },
+                {
+                    "id": 61,
+                    "type": "drink",
+                    "name": "Es Jeruk",
+                    "price": 9000
+                },
+                {
+                    "id": 62,
+                    "type": "drink",
+                    "name": "Salad Strawberry Saus Coklat",
+                    "price": 15000
+                },
+                {
+                    "id": 63,
+                    "type": "drink",
+                    "name": "Jus Tomat",
+                    "price": 9000
+                },
+                {
+                    "id": 64,
+                    "type": "drink",
+                    "name": "Salad Buah Saus Yoghurt",
+                    "price": 15000
+                },
+                {
+                    "id": 65,
+                    "type": "drink",
+                    "name": "Topping",
+                    "price": 14000
+                }
+            ]
+        },
+        {
+            "name": "Bakmi Pasundan",
+            "tenantID": 4,
+            "username": "bakmipasundan",
+            "password": "bakmipasundan123",
+            "menu": [
+                {
+                    "id": 1,
+                    "type": "food",
+                    "name": "Mie Kuah Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 2,
+                    "type": "food",
+                    "name": "Yamien Asin Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 3,
+                    "type": "food",
+                    "name": "Yamien Manis Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 4,
+                    "type": "food",
+                    "name": "Bihun Kuah Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 5,
+                    "type": "food",
+                    "name": "Yahun Asin Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 6,
+                    "type": "food",
+                    "name": "Yahun Manis Bakso/Pangsit",
+                    "price": 22500
+                },
+                {
+                    "id": 7,
+                    "type": "food",
+                    "name": "Upgrade ke Mie Lebar",
+                    "price": 5000
+                },
+                {
+                    "id": 8,
+                    "type": "food",
+                    "name": "Nasi Putih + Slomay/Bakso Tahu + Bakso/Pangsit",
+                    "price": 17500
+                },
+                {
+                    "id": 9,
+                    "type": "food",
+                    "name": "Nasi Putih + Bihun + Bakso/Pangsit",
+                    "price": 17500
+                },
+                {
+                    "id": 10,
+                    "type": "food",
+                    "name": "Nasi Putih + Bakso/Pangsit",
+                    "price": 17500
+                },
+                {
+                    "id": 11,
+                    "type": "food",
+                    "name": "Siomay",
+                    "price": 8000
+                },
+                {
+                    "id": 12,
+                    "type": "food",
+                    "name": "Bakso Tahu",
+                    "price": 8000
+                },
+                {
+                    "id": 13,
+                    "type": "food",
+                    "name": "Bakso/Pangsit Kuah (isi 4 pcs)",
+                    "price": 10000
+                },
+                {
+                    "id": 14,
+                    "type": "food",
+                    "name": "Babat",
+                    "price": 12000
+                },
+                {
+                    "id": 15,
+                    "type": "drink",
+                    "name": "Es Teh Manis",
+                    "price": 5000
+                },
+                {
+                    "id": 16,
+                    "type": "drink",
+                    "name": "Es Gula Asem",
+                    "price": 8000
+                },
+                {
+                    "id": 17,
+                    "type": "drink",
+                    "name": "Lemon Tea",
+                    "price": 10000
+                },
+                {
+                    "id": 18,
+                    "type": "drink",
+                    "name": "Lychee Tea",
+                    "price": 12000
+                },
+                {
+                    "id": 19,
+                    "type": "drink",
+                    "name": "Es Cincau",
+                    "price": 12000
+                }
+            ]
+        },
+        {
+            "name": "Jatinangor House",
+            "tenantID": 5,
+            "username": "jatinangorhouse",
+            "password": "jatinangorhouse123",
+            "menu": [
+                {
+                    "id": 1,
+                    "type": "food",
+                    "name": "Paket Ayam Spicy/Original Medium",
+                    "price": 20000
+                },
+                {
+                    "id": 2,
+                    "type": "food",
+                    "name": "Paket Ayam Spicy/Original Special Medium",
+                    "price": 23000
+                },
+                {
+                    "id": 3,
+                    "type": "food",
+                    "name": "Paket Ayam Spicy/Original Large",
+                    "price": 25000
+                },
+                {
+                    "id": 4,
+                    "type": "food",
+                    "name": "Paket Java 1",
+                    "price": 39000
+                },
+                {
+                    "id": 5,
+                    "type": "food",
+                    "name": "Paket Java 2",
+                    "price": 29000
+                },
+                {
+                    "id": 6,
+                    "type": "food",
+                    "name": "Paket Chicken Strip Boneless Original/Spicy",
+                    "price": 37000
+                },
+                {
+                    "id": 7,
+                    "type": "food",
+                    "name": "Paket Chicken Strip Boneless Original/Spicy (4 pcs)",
+                    "price": 35000
+                },
+                {
+                    "id": 8,
+                    "type": "food",
+                    "name": "Paket Ayam Spicy Jatinangor Special Large",
+                    "price": 29000
+                },
+                {
+                    "id": 9,
+                    "type": "food",
+                    "name": "Ayam Original/Spicy Large",
+                    "price": 22000
+                },
+                {
+                    "id": 10,
+                    "type": "food",
+                    "name": "Ayam Original/Spicy Medium",
+                    "price": 16000
+                },
+                {
+                    "id": 11,
+                    "type": "food",
+                    "name": "Chicken Strip Boneless Original/Spicy Medium",
+                    "price": 15000
+                },
+                {
+                    "id": 12,
+                    "type": "food",
+                    "name": "Signature Package Original/Spicy Large 1",
+                    "price": 47000
+                },
+                {
+                    "id": 13,
+                    "type": "food",
+                    "name": "Signature Package Original/Spicy Large 1",
+                    "price": 40000
+                },
+                {
+                    "id": 14,
+                    "type": "food",
+                    "name": "Signature Package Original/Spicy Large 2",
+                    "price": 43000
+                },
+                {
+                    "id": 15,
+                    "type": "food",
+                    "name": "Signature Package Original/Spicy Medium 2",
+                    "price": 36000
+                },
+                {
+                    "id": 16,
+                    "type": "food",
+                    "name": "French Fries",
+                    "price": 13000
+                },
+                {
+                    "id": 17,
+                    "type": "food",
+                    "name": "French Fries Large",
+                    "price": 15000
+                },
+                {
+                    "id": 18,
+                    "type": "food",
+                    "name": "Cookies Choco",
+                    "price": 11000
+                },
+                {
+                    "id": 19,
+                    "type": "food",
+                    "name": "Mix Platter + Sauce",
+                    "price": 24000
+                },
+                {
+                    "id": 20,
+                    "type": "food",
+                    "name": "Fries Chicken Spicy Tender",
+                    "price": 19000
+                },
+                {
+                    "id": 21,
+                    "type": "food",
+                    "name": "Tofu Chicken Spicy Tender",
+                    "price": 16000
+                },
+                {
+                    "id": 22,
+                    "type": "food",
+                    "name": "JBowls Cheese Sauce",
+                    "price": 17000
+                },
+                {
+                    "id": 23,
+                    "type": "food",
+                    "name": "JBowls Salted Egg",
+                    "price": 19000
+                },
+                {
+                    "id": 24,
+                    "type": "drink",
+                    "name": "Lemon Tea",
+                    "price": 14000
+                },
+                {
+                    "id": 25,
+                    "type": "drink",
+                    "name": "Es Kopi Jatinangor",
+                    "price": 18000
+                },
+                {
+                    "id": 26,
+                    "type": "drink",
+                    "name": "Blue Lagoon",
+                    "price": 18000
+                }
+            ]
+        }
+    ]
+}
