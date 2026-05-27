@@ -1,21 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { toko } from '@/data/menuTb3.json';
+import { useRouter } from "next/navigation";
+import { useState, use } from "react";
 import Image from "next/image";
 
 interface MenuAdmin {
   id: number;
-  nama: string;
-  harga: number;
+  name: string;
+  price: number;
   stok: number;
-  deskripsi: string;
+  description: string;
+  type: string;
   gambar: string;
 }
 
-export default function Admin() {
-  const [tenantName, setTenantName] = useState("Tenant 1");
-  const [isEditTenant, setIsEditTenant] = useState(false);
-  const [inputTenantName, setInputTenantName] = useState("Tenant 1");
+export default function AdminPage({ params }: { params?: Promise<{ id?: string }> }) {
+  const router = useRouter();
+  
+  const resolvedParams = params ? use(params) : {};
+  const tenantIdFromUrl = resolvedParams.id ? Number(resolvedParams.id) : 1;
+  const tenant = isNaN(tenantIdFromUrl) ? 1 : tenantIdFromUrl;
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -23,30 +28,49 @@ export default function Admin() {
   const [editHarga, setEditHarga] = useState(0);
   const [editStok, setEditStok] = useState(0);
   const [editDeskripsi, setEditDeskripsi] = useState("");
-  const [editGambar, setEditGambar] = useState("/images (5).jfif");
+  const [editGambar, setEditGambar] = useState("");
 
-  const [menus, setMenus] = useState<MenuAdmin[]>([
-    { id: 1, nama: "Menu 1", harga: 15000, stok: 10, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 2, nama: "Menu 2", harga: 18000, stok: 15, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 3, nama: "Menu 3", harga: 20000, stok: 8,  gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 4, nama: "Menu 4", harga: 12000, stok: 20, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 5, nama: "Menu 5", harga: 25000, stok: 5,  gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 6, nama: "Menu 6", harga: 14000, stok: 12, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 7, nama: "Menu 7", harga: 16000, stok: 14, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 8, nama: "Menu 8", harga: 22000, stok: 7,  gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-    { id: 9, nama: "Menu 9", harga: 17000, stok: 11, gambar: "/images (5).jfif", deskripsi: "Deskripsi lezat mengenai hidangan spesial." },
-  ]);
+  const [tenantName, setTenantName] = useState(() => {
+    const data = toko.find((current) => current.tenantID === tenant);
+    return data ? data.name : "Tenant 1";
+  });
+  const [isEditTenant, setIsEditTenant] = useState(false);
+  const [inputTenantName, setInputTenantName] = useState(tenantName);
+
+  const [selectedPage, setSelectedPage] = useState(0);
+  const itemsPerPage = 9;
+
+  const [menus, setMenus] = useState<MenuAdmin[]>(() => {
+    const data = toko.find((current) => current.tenantID === tenant);
+    if (!data) return [];
+    return data.menu.map((item) => ({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      stok: 10,
+      description: "Deskripsi lezat mengenai hidangan spesial.",
+      type: item.type,
+      gambar: item.type === "food" ? "🍛" : "🥤"
+    }));
+  });
+
+  const displayItems = menus.slice(selectedPage, selectedPage + itemsPerPage);
+  const totalItems = menus.length;
+  const currentPageNum = Math.floor(selectedPage / itemsPerPage) + 1;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const handlePrev = () => setSelectedPage((p) => Math.max(0, p - itemsPerPage));
+  const handleNext = () => setSelectedPage((p) => p + itemsPerPage);
 
   const bukaEdit = (menu: MenuAdmin) => {
     setSelectedId(menu.id);
-    setEditNama(menu.nama);
-    setEditHarga(menu.harga);
+    setEditNama(menu.name);
+    setEditHarga(menu.price);
     setEditStok(menu.stok);
-    setEditDeskripsi(menu.deskripsi);
+    setEditDeskripsi(menu.description);
     setEditGambar(menu.gambar);
     setIsOpen(true);
   };
-
   const gantiFotoHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -59,7 +83,7 @@ export default function Admin() {
     setMenus((prev) =>
       prev.map((m) =>
         m.id === selectedId
-          ? { ...m, nama: editNama, harga: editHarga, stok: editStok, deskripsi: editDeskripsi, gambar: editGambar }
+          ? { ...m, name: editNama, price: editHarga, stok: editStok, description: editDeskripsi, gambar: editGambar }
           : m
       )
     );
@@ -75,7 +99,7 @@ export default function Admin() {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-zinc-100 font-sans dark:bg-zinc-900">
-      <main className="relative flex h-full max-h-screen w-[412px] flex-col items-center justify-start bg-lime-300 p-6 shadow-2xl overflow-hidden">
+      <main className="relative flex h-full max-h-screen w-[412px] flex-col items-center justify-start bg-[#F4F3ED] p-6 shadow-2xl overflow-hidden text-zinc-950">
         
         <div className="mt-12 mb-10 w-full px-4 text-center flex flex-col items-center justify-center">
           {isEditTenant ? (
@@ -84,12 +108,12 @@ export default function Admin() {
                 type="text"
                 value={inputTenantName}
                 onChange={(e) => setInputTenantName(e.target.value)}
-                className="w-full h-9 border border-orange-500 rounded-xl px-3 text-sm font-bold text-orange-500 bg-white focus:outline-none focus:border-orange-600 text-center uppercase"
+                className="w-full h-9 border border-[#1B4D3E] bg-white rounded-xl px-3 text-sm font-bold text-[#1B4D3E] focus:outline-none text-center uppercase"
                 autoFocus
               />
               <button 
                 onClick={simpanNamaTenant}
-                className="h-9 px-3 bg-orange-500 text-white text-xs font-black rounded-xl uppercase transition active:scale-95 shadow hover:bg-orange-600"
+                className="h-9 px-3 bg-[#1B4D3E] text-white text-xs font-black rounded-xl uppercase transition active:scale-95 shadow hover:bg-[#153b2f]"
               >
                 OK
               </button>
@@ -100,25 +124,65 @@ export default function Admin() {
                 setInputTenantName(tenantName);
                 setIsEditTenant(true);
               }}
-              className="text-xl font-black tracking-widest uppercase text-orange-500 cursor-pointer hover:opacity-80 transition flex items-center gap-1 select-none"
+              className="text-xl font-black tracking-widest uppercase text-[#1B4D3E] cursor-pointer hover:opacity-80 transition flex items-center gap-1 select-none"
             >
               {tenantName} ✏️
             </h1>
           )}
         </div>
 
-        <div className="grid grid-cols-3 gap-x-4 gap-y-6 w-full max-w-[280px] px-2">
-          {menus.map((menu) => (
-            <div key={menu.id} className="flex flex-col items-center gap-2">
-              <div 
-                onClick={() => bukaEdit(menu)}
-                className="aspect-square w-full rounded-2xl bg-white/20 border-2 border-dashed border-orange-500/40 flex flex-col items-center justify-center overflow-hidden hover:bg-white/30 transition duration-200 cursor-pointer relative"
-              >
-                <Image src={menu.gambar} alt={menu.nama} fill className="object-cover" />
+        <div className="grid grid-cols-3 gap-x-4 gap-y-6 w-full max-w-[280px] px-2 flex-1 content-start">
+          {displayItems.map((menu) => {
+            const isFood = menu.type === "food";
+            const bgItemColor = isFood ? "bg-[#D2EE9D]" : "bg-[#FACB1A]";
+
+            return (
+              <div key={menu.id} className="flex flex-col items-center gap-1">
+                <div 
+                  onClick={() => bukaEdit(menu)}
+                  className={`aspect-square w-full ${bgItemColor} border border-zinc-300 flex items-center justify-center overflow-hidden shadow-sm hover:scale-105 transition-transform cursor-pointer relative rounded-2xl`}
+                >
+                  {menu.gambar.startsWith("blob:") ? (
+                    <Image src={menu.gambar} alt={menu.name} fill className="object-cover" unoptimized />
+                  ) : (
+                    <span className="text-2xl">{menu.gambar}</span>
+                  )}
+                </div>
+                <div className="text-center w-full px-0.5 flex flex-col">
+                  <span className="text-[8px] font-bold text-zinc-900 uppercase tracking-tight leading-tight truncate">{menu.name}</span>
+                  <span className="text-[8px] font-extrabold text-zinc-600">Rp{menu.price.toLocaleString("id-ID")}</span>
+                  <span className="text-[8px] font-bold text-[#1B4D3E]">Stok: {menu.stok}</span>
+                </div>
               </div>
-              <span className="text-xs font-bold text-orange-500 tracking-wide">{menu.nama}</span>
-            </div>
-          ))}
+            );
+          })}
+        </div>
+
+        <div
+          className="flex items-center justify-between w-full max-w-[280px] px-3 border-t border-zinc-200 bg-[#F4F3ED] mb-6"
+          style={{ height: 36 }}
+        >
+          <button
+            onClick={handlePrev}
+            disabled={selectedPage === 0}
+            className={`px-3 py-1 border border-[#1B4D3E] bg-white font-bold text-[#1B4D3E] text-xs transition-all 
+              ${selectedPage === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-[#1B4D3E] hover:text-white cursor-pointer active:scale-95"}`}
+          >
+            ← Prev
+          </button>
+          
+          <span className="text-xs font-bold text-[#1B4D3E]">
+            {currentPageNum} / {totalPages}
+          </span>
+          
+          <button
+            onClick={handleNext}
+            disabled={selectedPage + itemsPerPage >= totalItems}
+            className={`px-3 py-1 border border-[#1B4D3E] bg-white font-bold text-[#1B4D3E] text-xs transition-all
+              ${selectedPage + itemsPerPage >= totalItems ? "opacity-30 cursor-not-allowed" : "hover:bg-[#1B4D3E] hover:text-white cursor-pointer active:scale-95"}`}
+          >
+            Next →
+          </button>
         </div>
 
         {isOpen && (
@@ -135,8 +199,12 @@ export default function Admin() {
               </h2>
 
               <div className="flex flex-col items-center gap-2 w-full">
-                <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-zinc-200 shadow-sm">
-                  <Image src={editGambar} alt="Preview" fill className="object-cover" />
+                <div className="w-full bg-zinc-50 border border-zinc-200 flex items-center justify-center text-5xl h-24 relative rounded-xl overflow-hidden shadow-inner">
+                  {editGambar.startsWith("blob:") ? (
+                    <Image src={editGambar} alt="Preview" fill className="object-cover" unoptimized />
+                  ) : (
+                    <span>{editGambar}</span>
+                  )}
                 </div>
                 <label className="cursor-pointer bg-zinc-100 border border-zinc-200 text-zinc-600 text-[10px] font-bold px-3 py-1.5 rounded-lg uppercase tracking-wide hover:bg-zinc-200 transition active:scale-95">
                   Pilih Foto Baru
