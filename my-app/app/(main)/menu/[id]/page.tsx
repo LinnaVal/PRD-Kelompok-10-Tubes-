@@ -1,6 +1,5 @@
 "use client";
 import { toko } from '@/data/menuTb3.json';
-import { existsSync } from 'fs';
 import { useRouter } from "next/navigation";
 import { useState, use } from "react";
 
@@ -15,7 +14,6 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
   }
   let updatedCart : CartItem[] = [];
   
-  // ALL hooks before any early return — React rules of hooks
   const [selectedMenu, setSelectedMenu] = useState<number | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedPage, setSelectedPage] = useState(0);
@@ -209,7 +207,12 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
             </div>
 
             {/* Add to Cart */}
-            {quantity > 0 && (
+            {serve.stock == "stok habis" && (
+              <button className={`mt-3 w-full bg-red-700 text-white text-[9px] font-extrabold uppercase tracking-widest py-2 cursor-not-allowed transition`}>
+                 Stok Habis
+              </button>
+            )}
+            {quantity > 0 && serve.stock != "stok habis" && (
               <button 
               onClick={() => {
                 const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
@@ -231,7 +234,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
                  Tambah ke Keranjang — Rp{(serve.price * quantity).toLocaleString("id-ID")}
               </button>
             )}
-            {quantity === 0 && (
+            {quantity === 0 && serve.stock != "stok habis" && (
               <button 
               onClick={() => {
                 const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");

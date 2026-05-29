@@ -5,6 +5,7 @@ import { use, useState } from "react";
 export default function TransactionPage ({ params }: { params: Promise<{ id: string }> }) {
     const router = useRouter();
     const { id } = use(params);
+    const num = Number(id);
 
     const [selectedPage, setSelectedPage] = useState(0);
     
@@ -20,10 +21,11 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
       status : string
     }
     type ListOrders = {
+        tenant : number,
         id : number,
         order : Order
     }
-    
+    const empty : ListOrders[] = [];
     const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString("id-ID");
     const itemsPerPage = 9; 
@@ -46,7 +48,8 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
       <header className="border-b border-zinc-300 px-3 pt-2.5 pb-2">
         <div className="flex items-center gap-2 mb-1.5">
           <button
-            onClick={() => router.push(`/menu/${id}`)}
+            onClick={() => {router.push(`/menu/${id}`)
+            }}
             className="text-sm px-2 py-1 border border-zinc-400 bg-white hover:bg-zinc-100 leading-none cursor-pointer"
           >
             ←
@@ -122,6 +125,7 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
             const listOrders : ListOrders[] = JSON.parse(localStorage.getItem("orders") || "[]");
             if (listOrders.length === 0) {
               const firstOrder : ListOrders = {
+                tenant : num,
                 id: 1,
                 order: newOrder
               }
@@ -129,6 +133,7 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
               localStorage.setItem("currentOrderID", firstOrder.id.toString());
             } else {
               const nextOrder : ListOrders = {
+                tenant : num,
                 id: listOrders.length + 1,
                 order: newOrder
               }

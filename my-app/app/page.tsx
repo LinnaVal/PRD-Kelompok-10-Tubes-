@@ -6,14 +6,44 @@ import { useState } from "react";
 export default function BuyerHomePage() {
   const router = useRouter();
   const [search, setSearch] = useState("");
+  const [selectedPage, setSelectedPage] = useState(0);
 
+  type CartItem = {
+    id: number | undefined,
+    name: string | undefined,
+    price: number | undefined,
+    quantity: number
+  }
+  let updatedCart : CartItem[] = [];
+  type Order = {
+      cart : CartItem[],
+      totalPrice : string,
+      status : string
+    }
+    type ListOrders = {
+        id : number,
+        order : Order
+    }
+
+  let removeList : ListOrders[] = [];
+  // localStorage.setItem("orders", JSON.stringify(removeList));
   const filtered = toko.filter((tenant) =>
     tenant.name.toLowerCase().includes(search.toLowerCase())
   );
+  const itemsPerPage = 4;
+  const displayItems = search
+    ? filtered.slice(0, itemsPerPage)
+    : filtered.slice(selectedPage, selectedPage + itemsPerPage);
+
+  const totalItems = filtered.length;
+  const currentPageNum = Math.floor(selectedPage / itemsPerPage) + 1;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const handlePrev = () => setSelectedPage((p) => Math.max(0, p - itemsPerPage));
+  const handleNext = () => setSelectedPage((p) => p + itemsPerPage);
 
   return (
     <div
-      className="bg-[#F4F3ED] font-sans text-zinc-950 overflow-hidden relative"
+      className="bg-[#F4F3ED] font-sans text-zinc-950 relative"
       style={{ width: 360, height: 640 }}
     >
       {/* HEADER */}
@@ -42,13 +72,16 @@ export default function BuyerHomePage() {
       </header>
 
       {/* MAIN CONTENT */}
-      <div className="px-3 pt-3 overflow-y-auto" style={{ height: 572 }}>
+      <div className="px-3 pt-3 overflow-y-auto" style={{ height: 520 }}>
         <div className="grid grid-cols-2 gap-3">
-          {filtered.map((tenant) => (
+          {displayItems.map((tenant) => (
             <div
               key={tenant.tenantID}
               className="flex flex-col items-center cursor-pointer group"
-              onClick={() => router.push(`/menu/${tenant.tenantID}`)}
+              onClick={() => {router.push(`/menu/${tenant.tenantID}`)
+                updatedCart = [];
+                localStorage.setItem("cart", JSON.stringify(updatedCart));
+            }}
             >
               {/* Tenant Card */}
               <div
@@ -73,6 +106,34 @@ export default function BuyerHomePage() {
           </p>
         )}
       </div>
+      {/* PAGINATION */}
+      {(!search ) && (
+        <div
+          className="flex items-center justify-between px-3 border-t border-zinc-200 bg-[#F4F3ED]"
+          style={{ height: 36 }}
+        >
+          <button
+            onClick={handlePrev}
+            disabled={selectedPage === 0}
+            className={`px-3 py-1 border border-[#1B4D3E] bg-white font-bold text-[#1B4D3E] text-xs transition-all 
+              ${selectedPage === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-[#1B4D3E] hover:text-white cursor-pointer"}`}
+          >
+            ← Prev
+          </button>
+          <span className="text-xs font-bold text-[#1B4D3E]">
+            {currentPageNum} / {totalPages}
+          </span>
+          <button
+            onClick={handleNext}
+            disabled={selectedPage + itemsPerPage >= totalItems}
+            className={`px-3 py-1 border border-[#1B4D3E] bg-white font-bold text-[#1B4D3E] text-xs transition-all
+              ${selectedPage + itemsPerPage >= totalItems ? "opacity-30 cursor-not-allowed" : "hover:bg-[#1B4D3E] hover:text-white cursor-pointer"}`}
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
     </div>
   );
 }

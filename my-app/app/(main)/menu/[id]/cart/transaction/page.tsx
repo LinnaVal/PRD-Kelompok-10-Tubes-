@@ -17,6 +17,7 @@ export default function TransactionPage () {
       status : string
     }
     type ListOrders = {
+        tenant : string,
         id : number,
         order : Order
     }
