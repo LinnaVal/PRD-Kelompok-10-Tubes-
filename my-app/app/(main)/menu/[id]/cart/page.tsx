@@ -26,7 +26,12 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
         order : Order
     }
     const empty : ListOrders[] = [];
-    const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+    const [cart, setCart] = useState<CartItem[]>(() => {
+        if (typeof window !== "undefined") {
+            const storedCart = localStorage.getItem("cart");
+            return storedCart ? JSON.parse(storedCart) : [];
+        }
+    });
     const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0).toLocaleString("id-ID");
     const itemsPerPage = 9; 
     const totalItems = cart.length;
@@ -48,7 +53,8 @@ export default function TransactionPage ({ params }: { params: Promise<{ id: str
       <header className="border-b border-zinc-300 px-3 pt-2.5 pb-2">
         <div className="flex items-center gap-2 mb-1.5">
           <button
-            onClick={() => {router.push(`/menu/${id}`)
+            onClick={() => {{router.push(`/menu/${id}`)
+          }
             }}
             className="text-sm px-2 py-1 border border-zinc-400 bg-white hover:bg-zinc-100 leading-none cursor-pointer"
           >
