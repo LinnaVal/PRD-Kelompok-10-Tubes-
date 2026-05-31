@@ -164,6 +164,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
           className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
           onClick={() => setSelectedMenu(null)}
         >
+          
           <div
             className="bg-[#FACB1A] border border-zinc-400 p-4 shadow-2xl relative"
             style={{ width: 260 }}
@@ -217,6 +218,7 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
               onClick={() => {
                 const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
                 const exist = cart.find((item) => item.id === selectedMenu);
+                const oldQuantity = exist ? exist.quantity : 0;
                 if (exist) {
                   updatedCart = cart.map((item) => {
                     return item.id === selectedMenu 
@@ -228,6 +230,16 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
                   const newItem = {id: serve?.id, name: serve?.name, price: serve?.price, quantity: amount};
                   updatedCart = [...cart, newItem];
                 }
+                const newQuantity = oldQuantity + quantity;
+                if (newQuantity !== oldQuantity) {
+                  const notification = document.createElement("div");
+                  notification.textContent = `${serve.name} x${quantity} berhasil ditambahkan ke keranjang!`;
+                  notification.className = "bg-green-600 text-white text-[10px] font-bold px-3 py-1 rounded fixed top-5 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in-out";
+                  document.body.appendChild(notification);
+                  setTimeout(() => {
+                    notification.remove();
+                  }, 1000);
+                }
                 localStorage.setItem("cart", JSON.stringify(updatedCart));
             }}
                 className="mt-3 w-full bg-[#1B4D3E] text-white text-[9px] font-extrabold uppercase tracking-widest py-2 hover:bg-[#163d31] transition cursor-pointer">
@@ -238,10 +250,22 @@ export default function MenuPage({ params }: { params: Promise<{ id: string }> }
               <button 
               onClick={() => {
                 const cart : CartItem[] = JSON.parse(localStorage.getItem("cart") || "[]");
+                const menu : CartItem | undefined = cart.find((item) => item.id === selectedMenu);
                 updatedCart = cart.filter((item) => item.id !== selectedMenu)
+                if (menu != undefined) {
+                const notification = document.createElement("div");
+                  notification.textContent = `${menu?.name} berhasil dihapus dari keranjang!`;
+                  notification.className = "bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded fixed top-5 left-1/2 transform -translate-x-1/2 z-50 animate-fade-in-out";
+                  document.body.appendChild(notification);
+                  setTimeout(() => {
+                    notification.remove();
+                  }, 1000);
+                }
                 localStorage.setItem("cart", JSON.stringify(updatedCart));
               }}
-                className={`mt-3 w-full bg-zinc-400 text-white text-[9px] font-extrabold uppercase tracking-widest py-2 cursor-pointer hover:bg-zinc-500 transition`}>
+                className={`mt-3 w-full bg-red-600 text-white text-[9px] font-extrabold uppercase tracking-widest py-2 cursor-pointer hover:bg-red-500 transition`
+                  
+                }>
                  Hapus dari Keranjang
               </button>
              )}
